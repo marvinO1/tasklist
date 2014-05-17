@@ -21,6 +21,7 @@ public interface TaskListService {
 	Task updateTask(Task task);
 	void removeTask(Task task);
 	
+	Task getTask(String id);
 	List<Task> getAllTasks();
 	List<Task> getAllTasks(User user);
 	List<Task> assingUser(List<Task> tasks, User user);

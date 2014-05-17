@@ -74,6 +74,11 @@ public class TaskListServiceImpl implements TaskListService {
 	public void removeTask(Task task) {
 		taskDao.delete(task.getId());		
 	}
+	
+	@Override
+	public Task getTask(String id) {
+		return taskDao.get(id);
+	}
 
 	@Override
 	public List<Task> getAllTasks() {
@@ -113,5 +118,6 @@ public class TaskListServiceImpl implements TaskListService {
 		
 		throw new DomainException(String.format("Assigned user=%s does not exist!", assignedUser));
 	}
+
 }
 
