@@ -1,0 +1,14 @@
+*.sw?
+.#*
+*#
+*~
+.classpath
+.project
+.settings
+bin
+build
+target
+.idea
+*.iml
+out
+
