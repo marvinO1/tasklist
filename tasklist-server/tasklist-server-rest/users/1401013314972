@@ -1,0 +1,18 @@
+<org.rib.tasklist.api.User>
+  <id>1401013314972</id>
+  <createdAt>
+    <iLocalMillis>1401020515102</iLocalMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.FixedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <string>UTC</string>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.FixedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </createdAt>
+  <changedAt reference="../createdAt"/>
+  <createdBy>system</createdBy>
+  <name>hossa</name>
+</org.rib.tasklist.api.User>

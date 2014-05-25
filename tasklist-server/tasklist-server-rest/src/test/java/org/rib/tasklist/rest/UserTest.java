@@ -2,6 +2,7 @@ package org.rib.tasklist.rest;
 
 import java.util.Arrays;
 
+
 import org.junit.Before;
 import org.junit.Test;
 import org.rib.tasklist.api.User;
@@ -55,5 +56,14 @@ public class UserTest {
 				
         System.out.println(createdUser);        
 	}
+	
+	@Test
+	public void thatUserCanBeRead() {
+						
+		User user = template.getForObject("http://localhost:8080/tasklist/users/1401013314973", User.class);
+				
+        System.out.println(user);        
+	}
+	
 	
 }

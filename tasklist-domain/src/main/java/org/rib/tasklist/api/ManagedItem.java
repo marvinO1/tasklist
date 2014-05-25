@@ -13,8 +13,6 @@ public class ManagedItem implements Serializable {
 	private LocalDateTime changedAt;
 	private String createdBy;
 
-	
-	
 	public ManagedItem(String createdBy) {				
 		Assert.notNull(createdBy, "'createdBy' must not be null!");
 		
@@ -43,9 +41,7 @@ public class ManagedItem implements Serializable {
 		return this.createdBy;
 	}
 	
-
 	protected void changed() {
 		this.changedAt = LocalDateTime.now();
-	}
-	
+	}	
 }
