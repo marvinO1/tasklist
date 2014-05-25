@@ -2,7 +2,7 @@ package org.rib.tasklist.ctrl;
 
 public abstract class TasklistException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
-
+	
 	public TasklistException(String message) {
 		super(message);
 	}

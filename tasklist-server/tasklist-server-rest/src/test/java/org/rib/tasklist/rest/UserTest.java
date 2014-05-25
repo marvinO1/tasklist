@@ -2,9 +2,9 @@ package org.rib.tasklist.rest;
 
 import java.util.Arrays;
 
-
 import org.junit.Before;
 import org.junit.Test;
+import org.rib.tasklist.api.Task;
 import org.rib.tasklist.api.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,47 +23,46 @@ public class UserTest {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 	    template = new RestTemplate();
 	    
-	    // Set the request factory. 
-	    // IMPORTANT: This section I had to add for POST request. Not needed for GET
-	    // template.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-
-	    // Add converters
-	    // Note I use the Jackson Converter, I removed the http form converter 
-	    // because it is not needed when posting String, used for multipart forms.
-	    // template.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
+	    System.out.println("Assigned error handler=" + template.getErrorHandler());
 	}
 	
 	@Test
 	public void thatUserCanBeAddedAndRead() {
 		
-		User user = new User("beat", "system");		
+		User user = new User("berta", "system");		
 		
 		HttpEntity<User> requestEntity = new HttpEntity<User>(user, headers);
 		
-		ResponseEntity<User> entity = template.postForEntity("http://localhost:8080/tasklist/users", requestEntity, User.class);
+		ResponseEntity<User> entity = template.postForEntity("http://localhost:8090/tasklist/users", requestEntity, User.class);
 		
 		String path = entity.getHeaders().getLocation().getPath();
         System.out.println(path);
         System.out.println(entity.getStatusCode());
+        User createdUser = entity.getBody();
+        System.out.println("CREATED: " + createdUser);
+        
+        User reloadedUser = template.getForObject("http://localhost:8080" + path.toString(), User.class);
+        System.out.println("RELOADED: " + reloadedUser);
 	}
 	
-	@Test
-	public void thatUserCanBeAddedV2() {
-		
-		User user = new User("beat", "system");		
-		User createdUser = template.postForObject("http://localhost:8080/tasklist/users", user, User.class);
-				
-        System.out.println(createdUser);        
-	}
 	
 	@Test
-	public void thatUserCanBeRead() {
-						
-		User user = template.getForObject("http://localhost:8080/tasklist/users/1401013314973", User.class);
-				
+	public void thatUserCanBeRead() {						
+		User user = template.getForObject("http://localhost:8080/tasklist/users/1401024414903", User.class);				
         System.out.println(user);        
 	}
+
+	@Test
+	public void thatUsersCanBeRead() {		
+		User[] list = template.getForObject("http://localhost:8080/tasklist/users", User[].class);
+		for (User u : list) {
+			System.out.println(u);	
+		}
+	}
 	
-	
+	@Test
+	public void thatTaskCanBeRead() {						
+		Task task = template.getForObject("http://localhost:8080/tasklist/tasks/1401024414904", Task.class);				
+        System.out.println(task);        
+	}	
 }

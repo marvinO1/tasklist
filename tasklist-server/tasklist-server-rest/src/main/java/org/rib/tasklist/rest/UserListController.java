@@ -7,11 +7,16 @@ import org.rib.tasklist.services.api.TaskListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @Controller
@@ -22,12 +27,18 @@ public class UserListController {
 	
 	@Autowired
 	TaskListService service;
-	 
+
 	@RequestMapping(method=RequestMethod.POST)
-	public @ResponseBody User createUser(@PathVariable User user) {   	
+	public @ResponseBody ResponseEntity<User> createUser(@RequestBody User user, UriComponentsBuilder builder) {   	
 	   logger.info("createUser, user={}", user);
-	   return this.service.createUser(user);
+	   
+	   User createdUser = this.service.createUser(user);
+		   
+	   HttpHeaders headers = new HttpHeaders();
+	   headers.setLocation(builder.path("/tasklist/users/{id}").buildAndExpand(createdUser.getId()).toUri());
+	   return new ResponseEntity<User>(createdUser, headers, HttpStatus.CREATED); 
 	}	
+
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<User> getUsers() {   	

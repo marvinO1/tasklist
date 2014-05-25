@@ -46,12 +46,19 @@ public class TaskListServiceImpl implements TaskListService {
 
 	@Override
 	public User getUser(String id) {
+		if (!userDao.exists(id)) {
+			return null;
+		}
 		return userDao.get(id);
 	}
 
 	@Override
-	public void removeUser(String userId) {
+	public void removeUser(String userId) {		
 		User user = getUser(userId);
+		if (user == null) {
+			return;
+		}
+		
 		int numberOfAssignedTasks = getAllTasks(user).size();
 		if (numberOfAssignedTasks > 0) {
 			throw new DomainException(String.format("user=%s can not be deleted since there are %d tasks assigned!", user, numberOfAssignedTasks));
