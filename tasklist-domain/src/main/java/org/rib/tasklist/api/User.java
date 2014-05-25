@@ -8,8 +8,7 @@ public class User extends ManagedItem {
 	private static final long serialVersionUID = 1L;
 	private String name;
 
-	public User() {
-		
+	public User() {		
 	}
 
 	public User(String name, String createdBy) {

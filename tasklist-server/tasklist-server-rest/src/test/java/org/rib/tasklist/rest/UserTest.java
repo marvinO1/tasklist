@@ -59,10 +59,4 @@ public class UserTest {
 			System.out.println(u);	
 		}
 	}
-	
-	@Test
-	public void thatTaskCanBeRead() {						
-		Task task = template.getForObject("http://localhost:8080/tasklist/tasks/1401024414904", Task.class);				
-        System.out.println(task);        
-	}	
 }

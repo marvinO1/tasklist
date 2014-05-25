@@ -1,0 +1,8 @@
+<org.rib.tasklist.api.Task>
+  <id>1401038935986</id>
+  <createdAt>2014-05-25T19:43:54.257</createdAt>
+  <changedAt>2014-05-25T19:43:54.304</changedAt>
+  <createdBy>hossa</createdBy>
+  <status>NEW</status>
+  <severity>MEDIUM</severity>
+</org.rib.tasklist.api.Task>

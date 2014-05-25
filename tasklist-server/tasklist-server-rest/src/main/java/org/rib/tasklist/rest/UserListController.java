@@ -38,7 +38,6 @@ public class UserListController {
 	   headers.setLocation(builder.path("/tasklist/users/{id}").buildAndExpand(createdUser.getId()).toUri());
 	   return new ResponseEntity<User>(createdUser, headers, HttpStatus.CREATED); 
 	}	
-
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<User> getUsers() {   	
