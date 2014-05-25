@@ -15,11 +15,11 @@ public interface TaskListService {
 	User createUser(User user);
 	List<User> getAllUsers();
 	User getUser(String id);
-	void removeUser(User user);
+	void removeUser(String userId);
 	
 	Task createTask(Task task);
 	Task updateTask(Task task);
-	void removeTask(Task task);
+	void removeTask(String taskId);
 	
 	Task getTask(String id);
 	List<Task> getAllTasks();

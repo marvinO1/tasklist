@@ -26,7 +26,6 @@
 			<version>${version}</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<properties>

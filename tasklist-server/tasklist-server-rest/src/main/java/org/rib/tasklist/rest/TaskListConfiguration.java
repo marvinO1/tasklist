@@ -19,12 +19,12 @@ public class TaskListConfiguration {
 		
 	@Bean
 	public GenericDao<Task> taskDao() {
-		return new GenericDaoFile<Task>(rootPath);
+		return new GenericDaoFile<Task>(rootPath.resolve("tasks"));
 	}
 	
 	@Bean
 	public GenericDao<User> userDao() {
-		return new GenericDaoFile<User>(rootPath);
+		return new GenericDaoFile<User>(rootPath.resolve("users"));
 	}
 	
 	@Bean
