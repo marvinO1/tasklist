@@ -14,12 +14,17 @@ public class Task extends ManagedItem {
 	private User assignedTo;
 	private Description description;
 	
-	public Task(TaskSeverity severity, User createdBy) {
-		super(createdBy.getName());			
+	public Task() {
+		
+	}
+	
+	public Task(TaskSeverity severity, User createdBy) {		
 		Assert.notNull(severity, "'severity' must not be null!");
+		Assert.notNull(createdBy, "'createdBy' must not be null!");
 
 		this.status = TaskStatus.NEW;
         this.severity = severity;
+        setCreatedBy(createdBy.getName());
 	}
 	
     public void setStatus(TaskStatus status) {

@@ -6,15 +6,23 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class User extends ManagedItem {
 
 	private static final long serialVersionUID = 1L;
-	private final String name;
+	private String name;
+
+	public User() {
+		
+	}
 
 	public User(String name, String createdBy) {
-		super(createdBy);
-		this.name = name;
+		setName(name);
+		setCreatedBy(createdBy);
 	}
 	
 	public String getName() {
 		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	@Override

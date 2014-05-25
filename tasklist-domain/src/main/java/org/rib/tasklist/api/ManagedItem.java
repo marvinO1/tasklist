@@ -9,16 +9,13 @@ public class ManagedItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private final LocalDateTime createdAt;
-	private LocalDateTime changedAt;
+	private String createdAt;
+	private String changedAt;
 	private String createdBy;
 
-	public ManagedItem(String createdBy) {				
-		Assert.notNull(createdBy, "'createdBy' must not be null!");
-		
-		this.createdAt = LocalDateTime.now();
+	public ManagedItem() {						
+		this.createdAt = LocalDateTime.now().toString();
 		this.changedAt = this.createdAt;
-		this.createdBy = createdBy;
 	}
 	
 	public void setId(String id) {
@@ -29,12 +26,16 @@ public class ManagedItem implements Serializable {
 		return this.id;
 	}
 	
-	public LocalDateTime getCreatedAt() {
+	public String getCreatedAt() {
 		return this.createdAt;
 	}
 	
-	public LocalDateTime getChangedAt() {
+	public String getChangedAt() {
 		return this.changedAt;
+	}
+	
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 	
 	public String getCreatedBy() {
@@ -42,6 +43,6 @@ public class ManagedItem implements Serializable {
 	}
 	
 	protected void changed() {
-		this.changedAt = LocalDateTime.now();
+		this.changedAt = LocalDateTime.now().toString();
 	}	
 }
