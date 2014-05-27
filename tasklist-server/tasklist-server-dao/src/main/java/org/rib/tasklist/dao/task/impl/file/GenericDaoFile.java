@@ -12,8 +12,7 @@ import java.util.List;
 
 import org.joda.time.DateTimeUtils;
 import org.rib.tasklist.api.ManagedItem;
-import org.rib.tasklist.ctrl.DomainException;
-import org.rib.tasklist.ctrl.TransientException;
+import org.rib.tasklist.ctrl.TasklistException;
 import org.rib.tasklist.dao.task.GenericDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +35,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 		this.logger.info("Using rootPath={}", this.rootPath);
 		
 		if (!Files.exists(this.rootPath)) {
-			throw new DomainException("Given rootPath does not exists, rootPath=" + this.rootPath);
+			throw new TasklistException("Given rootPath does not exists, rootPath=" + this.rootPath);
 		}		
 		// we do not check for permissions and so on ....
 	}
@@ -44,7 +43,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 	@Override
 	public T create(T item) {
 		if (item == null) {
-			throw new DomainException("Given item was null!");
+			throw new TasklistException("Given item was null!");
 		}
 		item.setId(createId());
 		write(item);
@@ -59,7 +58,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 			try {
 			  Files.delete(toDelete);
 			} catch (IOException ioEx) {
-			  throw new TransientException("Failed to delete item with id=" + id, ioEx);
+			  throw new TasklistException("Failed to delete item with id=" + id, ioEx);
 			}
 		}		
 	}
@@ -70,7 +69,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 		Path toUpdate = this.rootPath.resolve(item.getId());
 		if (!Files.exists(toUpdate)) {
 	      String msg = String.format("Can not update given item, item not found, id=%s, rootPath=%s", item.getId(), this.rootPath);
-		  throw new TransientException(msg);
+		  throw new TasklistException(msg);
 		}		
 		write(item);
 		return item;
@@ -107,7 +106,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 		  writer.write(xml);	
 		} catch (IOException ioEx) {
 		  String msg = String.format("Can not write given item, id=%s, rootPath=%s", item.getId(), this.rootPath);	
-		  throw new TransientException(msg, ioEx);
+		  throw new TasklistException(msg, ioEx);
 		}
 	}
 	
@@ -118,7 +117,7 @@ public class GenericDaoFile<T extends ManagedItem> implements GenericDao<T> {
 		  return (T) xstream.fromXML(reader);
 		} catch (IOException ex) {
 		  String msg = String.format("Can not read item, lookUp=%s", lookUp);
-		  throw new TransientException(msg, ex);
+		  throw new TasklistException(msg, ex);
 		}
 	}
 	

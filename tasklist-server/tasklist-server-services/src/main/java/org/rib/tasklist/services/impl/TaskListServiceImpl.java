@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.rib.tasklist.api.Task;
 import org.rib.tasklist.api.User;
-import org.rib.tasklist.ctrl.DomainException;
+import org.rib.tasklist.ctrl.TasklistException;
 import org.rib.tasklist.dao.task.GenericDao;
 import org.rib.tasklist.services.api.TaskListService;
 
@@ -29,7 +29,7 @@ public class TaskListServiceImpl implements TaskListService {
 		// when id is provided it does not make sence to create user again!
 		String id = user.getId();
 		if (id != null) {
-			throw new DomainException(String.format("Given user contains already an id=%s!", id));
+			throw new TasklistException(String.format("Given user contains already an id=%s!", id));
 		}
 		
 		Optional<User> existingUser = Iterables.tryFind(userDao.getAll(), new NamePredicate(user.getName()));
@@ -61,7 +61,7 @@ public class TaskListServiceImpl implements TaskListService {
 		
 		int numberOfAssignedTasks = getAllTasks(user).size();
 		if (numberOfAssignedTasks > 0) {
-			throw new DomainException(String.format("user=%s can not be deleted since there are %d tasks assigned!", user, numberOfAssignedTasks));
+			throw new TasklistException(String.format("user=%s can not be deleted since there are %d tasks assigned!", user, numberOfAssignedTasks));
 		}
 		userDao.delete(userId);		
 	}
@@ -101,7 +101,7 @@ public class TaskListServiceImpl implements TaskListService {
 	@Override
 	public List<Task> assingUser(List<Task> tasks, User userToAssign) {
 		if (!userDao.exists(userToAssign.getId())) {
-			throw new DomainException(String.format("new assigned user=%s does not exist!", userToAssign));
+			throw new TasklistException(String.format("new assigned user=%s does not exist!", userToAssign));
 		}
 		
 		// TODO, here we could use function!
@@ -124,7 +124,7 @@ public class TaskListServiceImpl implements TaskListService {
 			return;
 		}
 		
-		throw new DomainException(String.format("Assigned user=%s does not exist!", assignedUser));
+		throw new TasklistException(String.format("Assigned user=%s does not exist!", assignedUser));
 	}
 
 }

@@ -19,7 +19,7 @@ import org.junit.runners.JUnit4;
 import org.rib.tasklist.api.Task;
 import org.rib.tasklist.api.TaskSeverity;
 import org.rib.tasklist.api.User;
-import org.rib.tasklist.ctrl.TransientException;
+import org.rib.tasklist.ctrl.TasklistException;
 import org.rib.tasklist.dao.task.GenericDao;
 
 @RunWith(JUnit4.class)
@@ -57,7 +57,7 @@ public class GenericDaoFileTest {
 		
 		taskDao.delete(id);
 		
-		expectedException.expect(TransientException.class);
+		expectedException.expect(TasklistException.class);
 		expectedException.expectMessage("Can not read");
 		taskDao.get(id);
 	}
@@ -88,7 +88,7 @@ public class GenericDaoFileTest {
 		
 		userDao.delete(id);
 		
-		expectedException.expect(TransientException.class);
+		expectedException.expect(TasklistException.class);
 		expectedException.expectMessage("Can not read");
 		userDao.get(id);
 	}

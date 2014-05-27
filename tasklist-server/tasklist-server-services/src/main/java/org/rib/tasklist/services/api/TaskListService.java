@@ -3,9 +3,10 @@ org.rib.tasklist.services.api;
 
 import java.util.List;
 
+import org.rib.tasklist.api.ManagedItem;
 import org.rib.tasklist.api.Task;
 import org.rib.tasklist.api.User;
-import org.rib.tasklist.ctrl.TransientException;
+import org.rib.tasklist.ctrl.TasklistException;
 
 public interface TaskListService {
 
@@ -58,8 +59,30 @@ public interface TaskListService {
 	 */
 	void removeTask(String taskId);
 	
+	/** 
+	 * @param id
+	 * @return Task referencd by id.
+	 * @throws TasklistException in case the {@link ManagedItem} can not be found.
+	 */
 	Task getTask(String id);
+	
+	/**
+	 * @return List<Task> of all found {@link Task}, never null.
+	 */
 	List<Task> getAllTasks();
+	
+    /**
+     * 	
+     * @param user
+     * @return List<Task> of all found {@link Task} referenced by {@link User}, never null.
+     */
 	List<Task> getAllTasks(User user);
+	
+	/**
+	 * Assign given tasks to given user.
+	 * @param tasks
+	 * @param user
+	 * @return @return List<Task> assigned tasks.
+	 */
 	List<Task> assingUser(List<Task> tasks, User user);	
 }
