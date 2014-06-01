@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.rib.tasklist.api.Task;
 import org.rib.tasklist.api.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +32,7 @@ public class UserTest {
 		
 		HttpEntity<User> requestEntity = new HttpEntity<User>(user, headers);
 		
-		ResponseEntity<User> entity = template.postForEntity("http://localhost:8090/tasklist/users", requestEntity, User.class);
+		ResponseEntity<User> entity = template.postForEntity("http://localhost:8080/tasklist/users", requestEntity, User.class);
 		
 		String path = entity.getHeaders().getLocation().getPath();
         System.out.println(path);

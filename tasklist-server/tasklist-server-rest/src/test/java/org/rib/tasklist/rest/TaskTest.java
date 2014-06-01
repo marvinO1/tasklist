@@ -36,7 +36,7 @@ public class TaskTest {
 		Task newTask = new Task(TaskSeverity.MEDIUM, user);
 		HttpEntity<Task> newEntity = new HttpEntity<Task>(newTask, headers);
 		
-		ResponseEntity<Task> entity = template.postForEntity("http://localhost:8090/tasklist/tasks", newEntity, Task.class);
+		ResponseEntity<Task> entity = template.postForEntity("http://localhost:8080/tasklist/tasks", newEntity, Task.class);
 		
 		String path = entity.getHeaders().getLocation().getPath();
         System.out.println(path);

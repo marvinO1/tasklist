@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class TasklListApplication {
+public class TaskListApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TasklListApplication.class, args);
+        SpringApplication.run(TaskListApplication.class, args);
     }
 
 } 
