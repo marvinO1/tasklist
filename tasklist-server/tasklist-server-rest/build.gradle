@@ -1,0 +1,9 @@
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.1.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:1.1.1.RELEASE'
+
+    compile project(':tasklist-domain')
+    compile project(':tasklist-server:tasklist-server-services')
+}    
+
+

@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':tasklist-domain') 
+    compile project(':tasklist-server:tasklist-server-dao')
+}

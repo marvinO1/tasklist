@@ -1,0 +1,6 @@
+include ':tasklist-domain'
+include ':tasklist-server:tasklist-server-dao', ':tasklist-server:tasklist-server-services', ':tasklist-server:tasklist-server-rest'  
+        
+       
+         
+       
