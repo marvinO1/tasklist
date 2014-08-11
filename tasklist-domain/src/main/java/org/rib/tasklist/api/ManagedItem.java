@@ -3,7 +3,6 @@ package org.rib.tasklist.api;
 import java.io.Serializable;
 
 import org.joda.time.LocalDateTime;
-import org.springframework.util.Assert;
 
 public class ManagedItem implements Serializable {
 
