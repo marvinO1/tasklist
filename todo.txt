@@ -1,0 +1,11 @@
+- Write simple AngularJS Client
+
+- Use Bean Validation instead of Assert.notNull, 
+    see also http://blog.codeleak.pl/2014/06/better-error-messages-with-bean.html
+
+- Configure which persistence layer to use (File, NoSQL or SQL)
+    see http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+
+- Use Neo4J as data base
+
+ 
