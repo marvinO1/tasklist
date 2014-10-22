@@ -17,7 +17,11 @@ class AssignedUserPredicate implements Predicate<Task> {
 	public boolean apply(Task input) {
 		User assignedUser = input.getAssignedTo();
 		if (assignedUser != null) {
-			return assignedUser.getId().equalsIgnoreCase(this.user.getId());
+			
+			if (this.user.getId() != null) {
+			  return assignedUser.getId().equalsIgnoreCase(this.user.getId());
+			} 
+			return assignedUser.getName().equalsIgnoreCase(this.user.getName());		
 		}
 		return false;
 	}

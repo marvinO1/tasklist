@@ -52,5 +52,28 @@ public class TaskTest {
 	public void thatTaskCanBeRead() {						
 		Task task = template.getForObject("http://localhost:8080/tasklist/tasks/1401024414904", Task.class);				
         System.out.println(task);        
-	}	
+	}
+	
+	@Test
+	public void thatAllTaskCanBeRead() {
+		Task[] tasks = template.getForObject("http://localhost:8080/tasklist/tasks/", Task[].class);	
+        print(tasks);
+		        
+	}
+	
+	@Test
+	public void thatAllTasksCanBeReadForUser() {
+		User user = template.getForObject("http://localhost:8080/tasklist/users/1401024414903", User.class);		
+		Task[] tasks = template.getForObject("http://localhost:8080/tasklist/tasks/by/user/" + user.getName(), Task[].class);				
+		print(tasks);    
+	}
+	
+	
+	protected static void print(Task[] tasks) {
+		System.out.println(tasks.length + " tasks received:");
+		for (Task t : tasks) {
+			System.out.println(t);
+		}		
+	}
+	
 }

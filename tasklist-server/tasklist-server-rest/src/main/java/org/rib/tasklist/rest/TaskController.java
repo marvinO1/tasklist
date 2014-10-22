@@ -65,7 +65,7 @@ public class TaskController {
 
 	@RequestMapping(value="/by/user/{name}", method=RequestMethod.GET)
 	public @ResponseBody List<Task> getTaskForUser(@PathVariable String name) {   	
-	   logger.info("getTaskForUser, name={}", name);	   
+	   logger.info("getTaskForUser, name={}", name);
 	   return this.service.getAllTasks(new User(name, null));
 	}
 	
